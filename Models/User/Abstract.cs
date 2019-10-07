@@ -12,6 +12,8 @@ namespace Spotifree
 
         private string name;
 
+        private string email;
+
         private string password;
 
         private string created;
@@ -23,5 +25,6 @@ namespace Spotifree
         public string Password { get => password; set => password = value; }
         public string Created { get => created; set => created = value; }
         public string Modified { get => modified; set => modified = value; }
+        public string Email { get => email; set => email = value; }
     }
 }

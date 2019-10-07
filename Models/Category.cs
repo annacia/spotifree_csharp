@@ -6,25 +6,27 @@ using System.ComponentModel;
 
 namespace Spotifree
 {
-    public abstract class List
+    public class Category
     {
         private int id;
 
         private string name;
 
-        private bool isAlbum;
-
         private string created;
 
         private string modified;
 
-        private User user;
+        private DAO_Category daoCategory;
 
         public int Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public bool IsAlbum { get => isAlbum; set => isAlbum = value; }
         public string Created { get => created; set => created = value; }
         public string Modified { get => modified; set => modified = value; }
-        public User User { get => user; set => user = value; }
+        public DAO_Category DaoCategory { get => daoCategory; set => daoCategory = value; }
+
+        public Array fetchAll()
+        {
+            return this.daoCategory.load();
+        }
     }
 }
