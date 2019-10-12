@@ -17,14 +17,14 @@
   <Class Name="Spotifree.List">
     <Position X="8.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAADAAIACAAAEAAQABAAAQQIBoBEAAYAAAAAAAAIAwA=</HashCode>
+      <HashCode>AAADAAIACAAAEAAQABAAAQQIBoAEAAYAAAAAAAAIAwA=</HashCode>
       <FileName>Models\List\Abstract.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spotifree.Category">
     <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACABAAAAAAEAAAABAAAAUABAAEAAQAEAAAAAAAAgA=</HashCode>
+      <HashCode>AAACAAAAAAAAEAAAABAAAAQQBAAEEAQAAAAAAAAAAgA=</HashCode>
       <FileName>Models\Category.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -47,14 +47,14 @@
   <Class Name="Spotifree.Music">
     <Position X="6.5" Y="7.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgCAAAAAAQAIAAAIAAAAAAAAAAAIAIA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAQAIAAAIAAAAAAAAAAAIAAA=</HashCode>
       <FileName>Models\Music.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spotifree.User">
-    <Position X="4.75" Y="6.5" Width="1.5" />
+    <Position X="4.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAgAAAAAAAQAIAACEAAAABQAAAAAIAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAQAIAAAEAAAABQAAAAAIAAA=</HashCode>
       <FileName>Models\User.cs</FileName>
     </TypeIdentifier>
   </Class>

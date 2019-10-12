@@ -17,7 +17,5 @@ namespace Spotifree.DAO
         public string Table { get => table; set => table = value; }
         public string Model { get => model; set => model = value; }
         public Dictionary<string, string> Data { get => data; set => data = value; }
-
-     
     }
 }

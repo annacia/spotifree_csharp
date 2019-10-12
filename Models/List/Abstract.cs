@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Web;
-using System.Web.Services;
-using System.Web.Services.Protocols;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Spotifree.Helper;
@@ -22,7 +20,6 @@ namespace Spotifree
 
         private Dictionary dicHelper;
 
-        private DAO_List daoList;
 
         private User user;
 
@@ -33,7 +30,6 @@ namespace Spotifree
         public string Modified { get => modified; set => modified = value; }
         public User User { get => user; set => user = value; }
         public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
-        public DAO_List DaoList { get => daoList; set => daoList = value; }
 
         protected List ModelByDic(Dictionary<string, string> data, List list)
         {
@@ -43,7 +39,7 @@ namespace Spotifree
             );
 
             string user = this.dicHelper.getString("idUser", data);
-            list.User = this.User.getById(user);
+            //list.User = this.User.getById(user);
 
             list.Id = Int32.Parse(
                 this.dicHelper.getString("id", data)
@@ -62,19 +58,19 @@ namespace Spotifree
                 DateTime datetime = new DateTime();
                 string date = datetime.ToString();
 
-                this.DaoList.load(newList);
+                //this.DaoList.load(newList);
                 int listId = newList.Id;
 
                 if (listId > 0)
                 {
                     newList.Modified = date;
-                    this.DaoList.update(newList);
+                    //this.DaoList.update(newList);
 
                     return status;
                 }
 
                 newList.Created = date;
-                this.DaoList.insert(newList);
+                //this.DaoList.insert(newList);
             }
             catch (InvalidCastException e)
             {
@@ -89,10 +85,10 @@ namespace Spotifree
         {
             try
             {
-                this.DaoList.relate(
-                    music,
-                    list
-                );
+                //this.DaoList.relate(
+                //    music,
+                //    list
+                //);
             }
             catch (InvalidCastException e)
             {
@@ -106,10 +102,10 @@ namespace Spotifree
         {
             try
             {
-                this.DaoList.removeRelate(
-                    music,
-                    list
-                );
+               // this.DaoList.removeRelate(
+               //     music,
+               //     list
+               // );
             }
             catch (InvalidCastException e)
             {
@@ -124,7 +120,7 @@ namespace Spotifree
 
             try
             {
-                this.DaoList.remove(this.Id);
+                //this.DaoList.remove(this.Id);
             }
             catch (InvalidCastException e)
             {

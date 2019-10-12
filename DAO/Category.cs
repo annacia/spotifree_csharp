@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace Spotifree.DAO
 {
-    public class Category
+    public class CategoryContext : DbContext
     {
-        public Dictionary<int, string> load()
-        {
-            return Dictionary<int, string>;
-        }
+        
     }
 }

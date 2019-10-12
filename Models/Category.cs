@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Web;
-using System.Web.Services;
-using System.Web.Services.Protocols;
 using System.ComponentModel;
+using System.Data.Entity;
 
 namespace Spotifree
 {
@@ -12,21 +11,13 @@ namespace Spotifree
 
         private string name;
 
-        private string created;
+        private DateTime created;
 
-        private string modified;
+        private DateTime modified;
 
-        private DAO_Category daoCategory;
-
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Created { get => created; set => created = value; }
-        public string Modified { get => modified; set => modified = value; }
-        public DAO_Category DaoCategory { get => daoCategory; set => daoCategory = value; }
-
-        public Array fetchAll()
-        {
-            return this.daoCategory.load();
-        }
+        public virtual int Id { get => id; set => id = value; }
+        public virtual string Name { get => name; set => name = value; }
+        public virtual DateTime Created { get => created; set => created = value; }
+        public virtual DateTime Modified { get => modified; set => modified = value; }
     }
 }

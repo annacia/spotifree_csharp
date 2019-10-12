@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Web;
-using System.Web.Services;
-using System.Web.Services.Protocols;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Spotifree.Helper;
@@ -16,11 +14,9 @@ namespace Spotifree
 
         private Password_Cryptography cryptography;
 
-        private DAO.User daoUser;
-
         public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
         public Password_Cryptography Cryptography { get => cryptography; set => cryptography = value; }
-        public User DaoUser { get => daoUser; set => daoUser = value; }
+        //public User DaoUser { get => daoUser; set => daoUser = value; }
 
         private User dictionaryToModel(Dictionary<string, string> data)
         {
@@ -54,19 +50,19 @@ namespace Spotifree
                 DateTime datetime = new DateTime();
                 string date = datetime.ToString();
 
-                this.DaoUser.load(newUser);
+                //this.DaoUser.load(newUser);
                 int userId = newUser.Id;
 
                 if (userId > 0)
                 {
                     newUser.Modified = date;
-                    this.DaoUser.update(newUser);
+                    //this.DaoUser.update(newUser);
 
                     return status;
                 }
 
                 newUser.Created = date;
-                this.DaoUser.insert(newUser);
+                //this.DaoUser.insert(newUser);
             } 
             catch (InvalidCastException e)
             {
@@ -83,7 +79,7 @@ namespace Spotifree
             bool status = true;
             try
             {
-                this.DaoUser.remove(this.Id);
+                //this.DaoUser.remove(this.Id);
             } 
             catch (InvalidCastException e)
             {
