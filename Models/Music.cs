@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Web;
-using System.Web.Services;
-using System.Web.Services.Protocols;
 using System.ComponentModel;
 using Spotifree.Helper;
 using System.Collections.Generic;
@@ -12,18 +10,16 @@ namespace Spotifree
     {
         private Dictionary dicHelper;
 
-        private DAO_Music daoMusic;
         public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
-        public DAO_Music DaoMusic { get => daoMusic; set => daoMusic = value; }
 
         private Music dictionaryToModel(Dictionary<string, string> data)
         {
             Music newMusic = new Music();
             string category = this.dicHelper.getString("idCategory", data);
-            newMusic.Category = this.Category.getById(category);
+            //newMusic.Category = this.Category.getById(category);
 
             string user = this.dicHelper.getString("idUser", data);
-            newMusic.User = this.User.getById(user);
+            //newMusic.User = this.User.getById(user);
 
             newMusic.Dir_art = this.dicHelper.getString("art", data);
             newMusic.Dir_music = this.dicHelper.getString("music", data);
@@ -51,13 +47,13 @@ namespace Spotifree
                 if (musicId > 0)
                 {
                     newMusic.Modified = date;
-                    this.DaoMusic.update(newMusic);
+                    //this.DaoMusic.update(newMusic);
 
                     return status;
                 }
 
                 newMusic.Created = date;
-                this.DaoMusic.insert(newMusic);
+                //this.DaoMusic.insert(newMusic);
             } 
             catch (InvalidCastException e)
             {
@@ -73,7 +69,7 @@ namespace Spotifree
             bool status = true;
             try
             {
-                this.DaoMusic.remove(this.Id);
+               // this.DaoMusic.remove(this.Id);
             }
             catch (InvalidCastException e)
             {
