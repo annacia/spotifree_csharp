@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
@@ -162,8 +164,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\Abstract.cs" />
+    <Compile Include="DAO\Album.cs" />
+    <Compile Include="DAO\Interface.cs" />
+    <Compile Include="DAO\Music.cs" />
+    <Compile Include="DAO\Playlist.cs" />
+    <Compile Include="DAO\List\List.cs" />
+    <Compile Include="DAO\User.cs" />
     <Compile Include="Helper\NHibernate.cs" />
+    <Compile Include="DAO\Abstract.cs" />
+    <Compile Include="DAO\Category.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -200,8 +209,6 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="DAO\Category.cs" />
-    <Compile Include="DAO\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,6 +236,7 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Mapping\User.hbm.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

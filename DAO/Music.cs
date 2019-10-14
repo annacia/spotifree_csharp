@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Spotifree.DAO
 {
-    public class DAO_User:DAO_Abstract
+    public class DAO_Music:DAO_Abstract
     {
     }
 }

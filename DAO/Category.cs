@@ -5,7 +5,8 @@ using System.Web;
 
 namespace Spotifree.DAO
 {
-    public class Category
+    public class DAO_Category:DAO_Abstract
     {
+
     }
 }

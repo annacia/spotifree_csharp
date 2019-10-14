@@ -14,15 +14,15 @@ namespace Spotifree
 
         private string password;
 
-        private string created;
+        private DateTime created;
 
-        private string modified;
+        private DateTime modified;
 
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string Password { get => password; set => password = value; }
-        public string Created { get => created; set => created = value; }
-        public string Modified { get => modified; set => modified = value; }
-        public string Email { get => email; set => email = value; }
+        public virtual int Id { get => id; set => id = value; }
+        public virtual string Name { get => name; set => name = value; }
+        public virtual string Password { get => password; set => password = value; }
+        public virtual DateTime Created { get => created; set => created = value; }
+        public virtual DateTime Modified { get => modified; set => modified = value; }
+        public virtual string Email { get => email; set => email = value; }
     }
 }

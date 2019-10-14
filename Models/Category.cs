@@ -18,10 +18,5 @@ namespace Spotifree
         public virtual string Name { get => name; set => name = value; }
         public virtual DateTime Created { get => created; set => created = value; }
         public virtual DateTime Modified { get => modified; set => modified = value; }
-
-        //public Array fetchAll()
-        //{
-          //  return this.daoCategory.load();
-        //}
     }
 }
