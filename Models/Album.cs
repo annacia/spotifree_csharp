@@ -5,8 +5,9 @@ using System.Collections.Generic;
 
 namespace Spotifree
 {
-    public class Album : List, List_Interface
+    public class Album : List
     {
+        /**
         public List newList(Dictionary<string, string> data)
         {
             data["IsAlbum"] = "1";
@@ -31,6 +32,6 @@ namespace Spotifree
         public List remove(Music music, List list)
         {
             return base.removeMusic(music, list);
-        }
+        }*/
     }
 }

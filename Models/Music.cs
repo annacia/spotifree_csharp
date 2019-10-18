@@ -6,12 +6,37 @@ using System.Collections.Generic;
 
 namespace Spotifree
 {
-    public class Music : Music_Abstract
+    public class Music
     {
-        private Dictionary dicHelper;
+        private int id;
 
-        public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
+        private string name;
 
+        private string dir_music;
+
+        private string dir_art;
+
+        private DateTime created;
+
+        private DateTime modified;
+
+        private Category category;
+
+        private User user;
+
+        //private Dictionary dicHelper;
+
+        //public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
+        public virtual int Id { get => id; set => id = value; }
+        public virtual string Name { get => name; set => name = value; }
+        public virtual string Dir_music { get => dir_music; set => dir_music = value; }
+        public virtual string Dir_art { get => dir_art; set => dir_art = value; }
+        public virtual DateTime Created { get => created; set => created = value; }
+        public virtual DateTime Modified { get => modified; set => modified = value; }
+        public virtual Category Category { get => category; set => category = value; }
+        public virtual User User { get => user; set => user = value; }
+
+        /**
         private Music dictionaryToModel(Dictionary<string, string> data)
         {
             Music newMusic = new Music();
@@ -30,54 +55,7 @@ namespace Spotifree
             );
 
             return newMusic;
-            
-        }
 
-        public bool upload(Dictionary<string, string> data)
-        {
-            bool status = true; 
-            try
-            {
-                Music newMusic = this.dictionaryToModel(data);
-                int musicId = newMusic.Id;
-
-                DateTime datetime = new DateTime();
-                string date = datetime.ToString();
-
-                if (musicId > 0)
-                {
-                    newMusic.Modified = date;
-                    //this.DaoMusic.update(newMusic);
-
-                    return status;
-                }
-
-                newMusic.Created = date;
-                //this.DaoMusic.insert(newMusic);
-            } 
-            catch (InvalidCastException e)
-            {
-                Console.WriteLine("IOException source: {0}", e.Source);
-                status = false;
-            }
-
-            return status;
-        }
-
-        public bool delete()
-        {
-            bool status = true;
-            try
-            {
-               // this.DaoMusic.remove(this.Id);
-            }
-            catch (InvalidCastException e)
-            {
-                Console.WriteLine("IOException source: {0}", e.Source);
-                status = false;
-            }
-
-            return status;
-        }
+        }*/
     }
 }

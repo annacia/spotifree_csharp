@@ -2,18 +2,16 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
   assembly="Spotifree"
   namespace="Spotifree">
-  <class name="User">
+  <class name="Music">
     <id name="Id">
       <generator class="identity" />
     </id>
     <property name="Name" />
-    <property name="Password" />
-    <property name="Email" />
+    <property name="Dir_music" />
+    <property name="Dir_art" />
     <property name="Created" />
     <property name="Modified" />
-    <bag name="Musics" fetch="join">
-      <key column="Id"/>
-      <one-to-many class="Music"/>
-    </bag>
+    <many-to-one name="Category" column="fk_category"/>
+    <many-to-one name="User" column="fk_user"/>
   </class>
 </hibernate-mapping>

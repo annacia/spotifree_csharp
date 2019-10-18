@@ -164,11 +164,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\Album.cs" />
-    <Compile Include="DAO\Interface.cs" />
     <Compile Include="DAO\Music.cs" />
-    <Compile Include="DAO\Playlist.cs" />
-    <Compile Include="DAO\List\List.cs" />
+    <Compile Include="DAO\List.cs" />
     <Compile Include="DAO\User.cs" />
     <Compile Include="Helper\NHibernate.cs" />
     <Compile Include="DAO\Abstract.cs" />
@@ -213,15 +210,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\Dictionary.cs" />
-    <Compile Include="Models\List\Abstract.cs" />
+    <Compile Include="Models\List\List.cs" />
     <Compile Include="Models\List\Interface.cs" />
     <Compile Include="Models\Music.cs" />
-    <Compile Include="Models\Music\Abstract.cs" />
     <Compile Include="Models\Password\Password_Cryptography.cs" />
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\User\Abstract.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -236,7 +231,9 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Mapping\User.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Music.hbm.xml" />
+    <EmbeddedResource Include="Mapping\User.hbm.xml" />
+    <EmbeddedResource Include="Mapping\List.hbm.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.ComponentModel;
+using System.Collections.Generic;
+using Spotifree.DAO;
 
 namespace Spotifree
 {
@@ -18,5 +20,7 @@ namespace Spotifree
         public virtual string Name { get => name; set => name = value; }
         public virtual DateTime Created { get => created; set => created = value; }
         public virtual DateTime Modified { get => modified; set => modified = value; }
+        public virtual IList<Music> Musics { get; set; }
+
     }
 }

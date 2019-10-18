@@ -6,11 +6,11 @@ using System.Web;
 
 namespace Spotifree.DAO
 {
-    public class DAO_Music:DAO_Abstract
+    public class DAO_List:DAO_Abstract
     {
-        private Music model;
+        private List model;
 
-        public Music Model { get => model; set => model = value; }
+        public List Model { get => model; set => model = value; }
 
         public override void Insert()
         {
@@ -21,7 +21,7 @@ namespace Spotifree.DAO
 
         public override void SearchById(int id)
         {
-            Model = Session.Get<Music>(id);
+            Model = Session.Get<List>(id);
         }
 
         public override void Update()

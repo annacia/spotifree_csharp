@@ -9,5 +9,9 @@
     <property name="Name" />
     <property name="Created" />
     <property name="Modified" />
+    <bag name="Musics" fetch="join">
+      <key column="Id"/>
+      <one-to-many class="Music"/>
+    </bag>
   </class>
 </hibernate-mapping>

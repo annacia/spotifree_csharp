@@ -8,58 +8,26 @@ using System.Web;
 
 namespace Spotifree.DAO
 {
-    public class DAO_Abstract
+    public abstract class DAO_Abstract
     {
         private ISession session;
+        public ISession Session { get => session; set => session = value; }
 
         public DAO_Abstract()
         {
-            this.session = NHibernate_Helper.OpenSession();
-        }
-        public void Insert(Object model)
-        {
-            ITransaction transaction = session.BeginTransaction();
-            session.Save(model);
-            transaction.Commit();
+            this.Session = NHibernate_Helper.OpenSession();
         }
 
-        public void InsertObject(Object model)
-        {
-            ITransaction transaction = session.BeginTransaction();
-            session.Save(model);
-            transaction.Commit();
-        }
+        public abstract void Insert();
 
-        public object SearchById(int id, Object model)
-        {
-            return session.Get<Object>(id);
-        }
+        public abstract void SearchById(int id);
 
-        public void Update(Object model)
-        {
-            ITransaction transaction = session.BeginTransaction();
-            this.session.Merge(model);
-            transaction.Commit();
-        }
+        public abstract void Update();
 
-        public void UpdateById(int id, Object model)
-        {
-            Object newModel = this.SearchById(id, model);
-            this.Update(model);
-        }
+        public abstract void UpdateById(int id);
 
-        public void DeleteById(int id, Object model)
-        {
-            Object newModel = this.SearchById(id, model);
-            this.Delete(newModel);
-        }
+        public abstract void DeleteById(int id);
 
-        public void Delete(Object model)
-        {
-            ITransaction transaction = session.BeginTransaction();
-
-            session.Delete(model);
-            transaction.Commit();
-        }
+        public abstract void Delete();
     }
 }

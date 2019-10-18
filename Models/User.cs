@@ -7,90 +7,39 @@ using Spotifree.Password;
 
 namespace Spotifree
 {
-    public class User : User_Abstract
+    public class User
     {
-        private Dictionary dicHelper;
+        private int id;
 
-        private Password_Cryptography cryptography;
+        private string name;
+
+        private string email;
+
+        private string password;
+
+        private DateTime created;
+
+        private DateTime modified;
+
+        public virtual int Id { get => id; set => id = value; }
+        public virtual string Name { get => name; set => name = value; }
+        public virtual string Password { get => password; set => password = value; }
+        public virtual DateTime Created { get => created; set => created = value; }
+        public virtual DateTime Modified { get => modified; set => modified = value; }
+        public virtual string Email { get => email; set => email = value; }
+        public virtual IList<Music> Musics { get; set; }
+        public virtual IList<List> Lists { get; set; }
+
+        //private Dictionary dicHelper;
+
+        //private Password_Cryptography cryptography;
 
         //private DAO.User daoUser;
 
-        public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
-        public Password_Cryptography Cryptography { get => cryptography; set => cryptography = value; }
+        //public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
+        //public Password_Cryptography Cryptography { get => cryptography; set => cryptography = value; }
         //public User DaoUser { get => daoUser; set => daoUser = value; }
 
-        //private User dictionaryToModel(Dictionary<string, string> data)
-        //{
-        //    User newUser = new User
-        //    {
-        //        Name = this.dicHelper.getString("name", data),
-        //        Email = this.dicHelper.getString("email", data),
-        //        Id = Int32.Parse(
-        //        this.dicHelper.getString("id", data)
-        //    )
-        //    };
 
-        //    string password = this.dicHelper.getString("password", data);
-        //    string passwordRepeat = this.dicHelper.getString("password_repeat", data);
-
-        //    bool isEqual = (password == passwordRepeat);
-
-        //    if (isEqual)
-        //    {
-        //        newUser.Password = this.cryptography.encode(password);
-        //    }
-            
-        //    return newUser;
-        //}
-
-
-        //public bool register(Dictionary<string, string> data)
-        //{
-        //    bool status = true;
-        //    try
-        //    {
-        //        User newUser = this.dictionaryToModel(data);
-        //        DateTime datetime = new DateTime();
-        //        string date = datetime.ToString();
-
-        //        //this.DaoUser.load(newUser);
-        //        int userId = newUser.Id;
-
-        //        if (userId > 0)
-        //        {
-        //            newUser.Modified = date;
-        //             //this.DaoUser.update(newUser);
-
-        //            return status;
-        //        }
-
-        //        newUser.Created = date;
-        //        //this.DaoUser.insert(newUser);
-        //    } 
-        //    catch (InvalidCastException e)
-        //    {
-        //        Console.WriteLine("IOException source: {0}", e.Source);
-        //        status = false;
-        //    }
-
-        //    return status;
-        //}
-
-
-        //public bool delete()
-        //{
-        //    bool status = true;
-        //    try
-        //    {
-        //        //this.DaoUser.remove(this.Id);
-        //    } 
-        //    catch (InvalidCastException e)
-        //    {
-        //        Console.WriteLine("IOException source: {0}", e.Source);
-        //        status = false;
-        //    }
-
-        //    return status;
-        //}
     }
 }
