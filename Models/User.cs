@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using Spotifree.Helper;
 using Spotifree.Password;
+using Spotifree.Models;
 
-namespace Spotifree
+namespace Spotifree.Models
 {
-    public class User
+    public class User:Model_Abstract
     {
         private int id;
 

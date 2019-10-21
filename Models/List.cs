@@ -3,10 +3,11 @@ using System.Web;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Spotifree.Helper;
+using Spotifree.Models;
 
-namespace Spotifree
+namespace Spotifree.Models
 {
-    public class List
+    public class List:Model_Abstract
     {
         private int id;
 
@@ -25,7 +26,10 @@ namespace Spotifree
         public virtual DateTime Created { get => created; set => created = value; }
         public virtual DateTime Modified { get => modified; set => modified = value; }
         public virtual User User { get => user; set => user = value; }
-        public virtual int Is_album { get => is_album; set => is_album = value; }
+        public virtual int Is_Album { get => is_album; set => is_album = value; }
+
+        public virtual IList<Music> Musics { get; set; }
     }
+
 
 }

@@ -2,6 +2,7 @@
 using NHibernate.Cfg;
 using Spotifree.DAO;
 using Spotifree.Helper;
+using Spotifree.Models;
 using System;
 using System.Web.Mvc;
 
@@ -13,41 +14,43 @@ namespace Spotifree.Controllers
         {
             ViewBag.Title = "Home Page";
 
+            DAO_List daoList = new DAO_List();
+            List list = (List) daoList.SearchById(1);
 
-            /** Exemplo de inserção e busca
-                DAO_Category dao = new DAO_Category();
-                DAO_Category daoCate = new DAO_Category();
-                daoCate.SearchById(3);
-                Category category = daoCate.Model;
+            DAO_Music daoMusic = new DAO_Music();
+            Music music = (Music) daoMusic.SearchById(1);
 
-                DAO_User daoUser = new DAO_User();
-                daoUser.SearchById(1);
-                User user = daoUser.Model;
+            daoList.AddMusic(music, list);
 
-                Music music = new Music();
-                music.Name = "teste";
-                music.Dir_art = "caminho_png_musica";
-                music.Dir_music = "caminho_mp3_musica";
-                music.Created = new DateTime();
-                music.Category = category;
-                music.User = user;
+            /**Insercao de playlist funcionando
+            Playlist playlist = new Playlist();
+            playlist.Name = "playlist1";
+            playlist.Created = new DateTime();
+            playlist.User = (User) daoUser.SearchById(1);
 
-                DAO_Music daoMusic = new DAO_Music();
-                daoMusic.Model = music;
-                daoMusic.Insert();
-            */
+            List list = playlist.PlaylistToList(playlist);
+            DAO_List daoList = new DAO_List();
+            daoList.Insert(list);
+            **/
+
+            /**Insercao e busca funcionando
+            DAO_Category daoCate = new DAO_Category();
+            Model_Abstract category = daoCate.SearchById(3);
 
             DAO_User daoUser = new DAO_User();
-            daoUser.SearchById(1);
-            User user = daoUser.Model;
+            Model_Abstract user = daoUser.SearchById(1);
 
-            //nao esta funcionando a insercao na lista
-            List list = new List();
-            list.Name = "playlist_teste";
-            list.Is_album = 0;
-            list.Created = new DateTime();
-            list.User = user;
+            Music music = new Music();
+            music.Name = "teste2";
+            music.Dir_art = "caminho_png_musica2";
+            music.Dir_music = "caminho_mp3_musica2";
+            music.Created = new DateTime();
+            music.Category = (Category) category;
+            music.User = (User) user;
 
+            DAO_Music daoMusic = new DAO_Music();
+            daoMusic.Insert(music);
+            **/
             return View();
         }
     }

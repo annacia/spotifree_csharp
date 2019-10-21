@@ -3,10 +3,11 @@ using System.Web;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Spotifree.DAO;
+using Spotifree.Models;
 
-namespace Spotifree
+namespace Spotifree.Models
 {
-    public class Category
+    public class Category:Model_Abstract
     {
         private int id;
 

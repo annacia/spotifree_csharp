@@ -1,4 +1,5 @@
 ﻿using NHibernate;
+using Spotifree.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,47 +9,24 @@ namespace Spotifree.DAO
 {
     public class DAO_List:DAO_Abstract
     {
-        private List model;
-
-        public List Model { get => model; set => model = value; }
-
-        public override void Insert()
+        public override Model_Abstract SearchById(int id)
         {
-            ITransaction transaction = Session.BeginTransaction();
-            Session.Save(Model);
-            transaction.Commit();
+            List model = Session.Get<List>(id);
+
+            return model;
         }
 
-        public override void SearchById(int id)
+        public IList<Music> AddMusic(Music music, List list)
         {
-            Model = Session.Get<List>(id);
-        }
+            if (!list.Musics.Contains(music))
+            {
+                ITransaction transaction = Session.BeginTransaction();
+                list.Musics.Add(music);
+                this.Session.Merge(list);
+                transaction.Commit();
+            }
 
-        public override void Update()
-        {
-            ITransaction transaction = Session.BeginTransaction();
-            this.Session.Merge(Model);
-            transaction.Commit();
-        }
-
-        public override void UpdateById(int id)
-        {
-            this.SearchById(id);
-            this.Update();
-        }
-
-        public override void DeleteById(int id)
-        {
-            this.SearchById(id);
-            this.Delete();
-        }
-
-        public override void Delete()
-        {
-            ITransaction transaction = Session.BeginTransaction();
-
-            Session.Delete(Model);
-            transaction.Commit();
+            return list.Musics;
         }
     }
 }

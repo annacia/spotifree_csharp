@@ -3,10 +3,11 @@ using System.Web;
 using System.ComponentModel;
 using Spotifree.Helper;
 using System.Collections.Generic;
+using Spotifree.Models;
 
-namespace Spotifree
+namespace Spotifree.Models
 {
-    public class Music
+    public class Music:Model_Abstract
     {
         private int id;
 
@@ -35,6 +36,7 @@ namespace Spotifree
         public virtual DateTime Modified { get => modified; set => modified = value; }
         public virtual Category Category { get => category; set => category = value; }
         public virtual User User { get => user; set => user = value; }
+        public virtual IList<List> Lists { get; set; }
 
         /**
         private Music dictionaryToModel(Dictionary<string, string> data)
