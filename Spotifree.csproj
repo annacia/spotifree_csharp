@@ -171,6 +171,7 @@
     <Compile Include="DAO\Abstract.cs" />
     <Compile Include="DAO\Category.cs" />
     <Compile Include="Mapper\Abstract.cs" />
+    <Compile Include="Mapper\Interface.cs" />
     <Compile Include="Mapper\User.cs" />
     <Compile Include="Models\List\Album.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

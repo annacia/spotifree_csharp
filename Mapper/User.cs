@@ -1,4 +1,5 @@
 ﻿using Spotifree.DAO;
+using Spotifree.Helper;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,101 @@ using System.Web;
 
 namespace Spotifree.Mapper
 {
-    public class User:Mapper_Abstract
+    public class Mapper_User:Mapper_Abstract, Mapper_Interface
     {
-        public User()
+        private Password_Cryptography cryptography;
+
+        public Mapper_User()
         {
+            Cryptography = new Password_Cryptography();
             Dao = new DAO_User();
-            Model = new Spotifree.Models.User();
+            Model = new User();
+        }
+
+        public Password_Cryptography Cryptography { get => cryptography; set => cryptography = value; }
+
+        public override void DictionaryToModel(Dictionary<string, string> data)
+        {
+            User newUser = new User();
+            newUser.Name = this.DicHelper.GetString("name", data);
+            newUser.Email = this.DicHelper.GetString("email", data);
+
+            string id = this.DicHelper.GetString("id", data);
+
+            if (id != "")
+            {
+                newUser.Id = Int32.Parse(id);
+            }
+
+            string password = this.DicHelper.GetString("password", data);
+            string passwordRepeat = this.DicHelper.GetString("password_repeat", data);
+
+            bool isEqual = (password == passwordRepeat);
+
+            if (isEqual)
+            {
+                newUser.Password = this.Cryptography.Encode(password);
+            }
+
+            this.Model = newUser;
+        }
+
+        public bool Register()
+        {
+            bool status = true;
+            try
+            {
+                User user = Model as User;
+                user.Created = DateTime.Today;
+                Dao.Insert(user);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                status = false;
+            }
+
+            return status;
+        }
+
+        public bool Update()
+        {
+            bool status = true;
+            try
+            {
+                User user = Model as User;
+                User userUpdate = Dao.SearchById(user.Id) as User;
+                
+                userUpdate.Modified = DateTime.Today;
+                userUpdate.Email = user.Email;
+                userUpdate.Name = user.Name;
+                userUpdate.Password = user.Password;
+
+                Dao.Update(userUpdate);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                status = false;
+            }
+
+            return status;
+        }
+
+        public bool Delete()
+        {
+            bool status = true;
+            try
+            {
+                this.Dao.Delete(Model as User);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                status = false;
+            }
+
+            return status;
         }
 
     }

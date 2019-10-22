@@ -1,9 +1,12 @@
-﻿using NHibernate;
+﻿using Newtonsoft.Json;
+using NHibernate;
 using NHibernate.Cfg;
 using Spotifree.DAO;
 using Spotifree.Helper;
+using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Spotifree.Controllers
@@ -14,6 +17,15 @@ namespace Spotifree.Controllers
         {
             ViewBag.Title = "Home Page";
 
+            string json = @"{""name"":""cams"",""email"":""cams@cams.com"",""password"":""123456"",""password_repeat"":""123456""}";
+            var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+            Mapper_User mapper = new Mapper_User();
+            mapper.DictionaryToModel(values);
+            mapper.Register();
+
+
+            /**insercao Many to Many
             DAO_List daoList = new DAO_List();
             List list = (List) daoList.SearchById(1);
 
@@ -21,6 +33,7 @@ namespace Spotifree.Controllers
             Music music = (Music) daoMusic.SearchById(1);
 
             daoList.AddMusic(music, list);
+            **/
 
             /**Insercao de playlist funcionando
             Playlist playlist = new Playlist();

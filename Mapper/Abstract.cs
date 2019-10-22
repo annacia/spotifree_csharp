@@ -1,4 +1,5 @@
 ﻿using Spotifree.DAO;
+using Spotifree.Helper;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,17 @@ namespace Spotifree.Mapper
     {
         private Model_Abstract model;
         private DAO_Abstract dao;
+        private Dictionary dicHelper;
 
+        public Dictionary DicHelper { get => dicHelper; set => dicHelper = value; }
         public Model_Abstract Model { get => model; set => model = value; }
         public DAO_Abstract Dao { get => dao; set => dao = value; }
 
-        public abstract Model_Abstract DictionaryToModel(Dictionary<string, string> dic);
+        public abstract void DictionaryToModel(Dictionary<string, string> dic);
+
+        public Mapper_Abstract()
+        {
+            DicHelper = new Dictionary();
+        }
     }
 }
