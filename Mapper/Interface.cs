@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spotifree.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Spotifree.Mapper
     {
         public bool Register();
         public bool Update();
-        public bool Delete();
+        public Model_Abstract Load(int id);
+        public void SetModelById(int id);
     }
 }

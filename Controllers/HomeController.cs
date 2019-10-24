@@ -17,13 +17,31 @@ namespace Spotifree.Controllers
         {
             ViewBag.Title = "Home Page";
 
+            /**Deletando user
+            Mapper_User mapper = new Mapper_User();
+            User user = mapper.Dao.SearchById(2) as User;
+
+            mapper.Model = user;
+            mapper.Delete();
+            **/
+
+            /** Insercao de usuario
             string json = @"{""name"":""cams"",""email"":""cams@cams.com"",""password"":""123456"",""password_repeat"":""123456""}";
             var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
             Mapper_User mapper = new Mapper_User();
             mapper.DictionaryToModel(values);
             mapper.Register();
+            **/
 
+            /**Atualizacao do usuario
+            DAO_User dao = new DAO_User();
+            User user = dao.SearchById(1) as User;
+            user.Name = "Cams2";
+            Mapper_User mapper = new Mapper_User();
+            mapper.Model = user;
+            mapper.Update();
+            **/
 
             /**insercao Many to Many
             DAO_List daoList = new DAO_List();
@@ -64,6 +82,7 @@ namespace Spotifree.Controllers
             DAO_Music daoMusic = new DAO_Music();
             daoMusic.Insert(music);
             **/
+
             return View();
         }
     }

@@ -62,7 +62,7 @@ namespace Spotifree.DAO
         {
             ITransaction transaction = Session.BeginTransaction();
 
-            Session.Delete(model);
+            this.Session.Delete(model);
             transaction.Commit();
         }
     }

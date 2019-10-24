@@ -37,12 +37,7 @@ namespace Spotifree.Mapper
             string password = this.DicHelper.GetString("password", data);
             string passwordRepeat = this.DicHelper.GetString("password_repeat", data);
 
-            bool isEqual = (password == passwordRepeat);
-
-            if (isEqual)
-            {
-                newUser.Password = this.Cryptography.Encode(password);
-            }
+            newUser = this.ChangePassword(newUser, password, passwordRepeat);
 
             this.Model = newUser;
         }
@@ -89,20 +84,29 @@ namespace Spotifree.Mapper
             return status;
         }
 
-        public bool Delete()
+        public User ChangePassword(User user, string password, string passwordRepeat)
         {
-            bool status = true;
-            try
+            password = this.Cryptography.Encode(password);
+            passwordRepeat = this.Cryptography.Encode(passwordRepeat);
+
+            bool isEqual = this.Cryptography.CompareHash(password, passwordRepeat);
+
+            if (isEqual)
             {
-                this.Dao.Delete(Model as User);
-            }
-            catch (InvalidCastException e)
-            {
-                Console.WriteLine("IOException source: {0}", e.Source);
-                status = false;
+                user.Password = this.Cryptography.Encode(password);
             }
 
-            return status;
+            return user;
+        }
+
+        public Model_Abstract Load(int id)
+        {
+            return Dao.SearchById(id) as User;
+        }
+
+        public void SetModelById(int id)
+        {
+            this.Model = this.Load(id);
         }
 
     }
