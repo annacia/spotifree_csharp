@@ -167,6 +167,8 @@
     <Compile Include="DAO\Music.cs" />
     <Compile Include="DAO\List.cs" />
     <Compile Include="DAO\User.cs" />
+    <Compile Include="Helper\Directory.cs" />
+    <Compile Include="Helper\File.cs" />
     <Compile Include="Helper\NHibernate.cs" />
     <Compile Include="DAO\Abstract.cs" />
     <Compile Include="DAO\Category.cs" />
