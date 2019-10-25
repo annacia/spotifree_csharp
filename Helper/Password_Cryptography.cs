@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace Spotifree.Password
+namespace Spotifree.Helper
 {
     public class Password_Cryptography
     {
@@ -13,9 +13,15 @@ namespace Spotifree.Password
 
         public MD5 Md5Hash { get => md5Hash; set => md5Hash = value; }
 
-        public string encode(string input)
+        public Password_Cryptography()
         {
-            byte[] data = this.md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            Md5Hash = MD5.Create();
+        }
+
+        public string Encode(string input)
+        {
+            byte[] hash = Encoding.UTF8.GetBytes(input);
+            byte[] data = Md5Hash.ComputeHash(hash);
 
             StringBuilder sBuilder = new StringBuilder();
 
@@ -27,14 +33,14 @@ namespace Spotifree.Password
             return sBuilder.ToString();
         }
 
-        public bool compareString(string input, string hash)
+        public bool CompareString(string input, string hash)
         {
-            string hashOfInput = this.encode(input);
+            string hashOfInput = this.Encode(input);
 
-            return this.compareHash(hashOfInput, hash);
+            return this.CompareHash(hashOfInput, hash);
         }
 
-        public bool compareHash(string hash1, string hash2)
+        public bool CompareHash(string hash1, string hash2)
         {
             StringComparer comparer = StringComparer.OrdinalIgnoreCase;
 

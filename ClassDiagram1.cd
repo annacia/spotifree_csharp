@@ -1,68 +1,141 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Spotifree.User_Abstract">
-    <Position X="4.75" Y="1.75" Width="1.5" />
+  <Class Name="Spotifree.Models.Model_Abstract">
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAAEAAgABAAAAQABAAEAAQCAAAAAgAAAgA=</HashCode>
-      <FileName>Models\User\Abstract.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Abstract.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Spotifree.Music_Abstract">
-    <Position X="6.5" Y="1.75" Width="1.5" />
+  <Class Name="Spotifree.Models.Category">
+    <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAAAIIAAAEAAAABAAAAQABAAEAAQAAAgoAAAACwA=</HashCode>
-      <FileName>Models\Music\Abstract.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Spotifree.List">
-    <Position X="8.25" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>QAADAAIACAAAEAAQABAAAQQIBoBEAAYAAAAAAAAIAwA=</HashCode>
-      <FileName>Models\List\Abstract.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Spotifree.Category">
-    <Position X="3" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACABAAAAAAEAAAABAAAAUABAAEAAQAEAAAAAAAAgA=</HashCode>
+      <HashCode>AAACAAEAAAAAEAAAABAAAAQABAAEAAQAAAAAAAAAAgA=</HashCode>
       <FileName>Models\Category.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Spotifree.Album">
-    <Position X="10.25" Y="0.5" Width="1.5" />
+  <Class Name="Spotifree.Models.List">
+    <Position X="2.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAABAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Album.cs</FileName>
+      <HashCode>AAgDAAEAAAAAEAAAABAAAAQABAAEAAQAAAAAAAAAAwA=</HashCode>
+      <FileName>Models\List.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Spotifree.Playlist">
-    <Position X="10.25" Y="2.75" Width="1.5" />
+  <Class Name="Spotifree.Models.Music">
+    <Position X="4" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAABAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\Playlist.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Spotifree.Music">
-    <Position X="6.5" Y="7.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgCAAAAAAQAIAAAIAAAAAAAAAAAIAIA=</HashCode>
+      <HashCode>AAADAAAIIAAAEAAAABAAAAQABAAEAQQAAAgoAAAACwA=</HashCode>
       <FileName>Models\Music.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Spotifree.User">
-    <Position X="4.75" Y="6.5" Width="1.5" />
+  <Class Name="Spotifree.Models.User">
+    <Position X="5.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAgAAAAAAAQAIAACEAAAABQAAAAAIAAA=</HashCode>
+      <HashCode>AAACAAEAACAAEAAgABAAAAQABAAEAQQCAAAAAgAAAgA=</HashCode>
       <FileName>Models\User.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Spotifree.List_Interface">
-    <Position X="10.25" Y="4.75" Width="1.5" />
+  <Class Name="Spotifree.Models.Album">
+    <Position X="0.5" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAABAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\List\Interface.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\List\Album.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.Models.Playlist">
+    <Position X="2.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\List\Playlist.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.DAO.DAO_Abstract">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAABAAAQAAAAEAAAAAACEAAAAAAAgAAACIAAA=</HashCode>
+      <FileName>DAO\Abstract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.DAO.DAO_Category">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAO\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.DAO.DAO_List">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAO\List.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.DAO.DAO_Music">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAO\Music.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.DAO.DAO_User">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <InheritanceLine Type="Spotifree.DAO.DAO_Abstract" FixedFromPoint="true">
+      <Path>
+        <Point X="8.5" Y="4.045" />
+        <Point X="8.5" Y="5.096" />
+        <Point X="10.25" Y="5.096" />
+        <Point X="10.25" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DAO\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.Mapper.Mapper_Abstract">
+    <Position X="14.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACgAAAAIAAAAAAAAAAAAAAIAAEAAAAAAAgAAAAIAAA=</HashCode>
+      <FileName>Mapper\Abstract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spotifree.Mapper.Mapper_User">
+    <Position X="12.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAgAAAAAAAgAAAAAAAAIAAAAAFAAAABAAAAAAAAAA=</HashCode>
+      <FileName>Mapper\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spotifree.Mapper.Mapper_Category">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAgAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapper\Category.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spotifree.Mapper.Mapper_Music">
+    <Position X="17.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAgAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapper\Music.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Spotifree.Mapper.Mapper_List">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAgAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapper\List.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Spotifree.Mapper.Mapper_Interface">
+    <Position X="15" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Mapper\Interface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

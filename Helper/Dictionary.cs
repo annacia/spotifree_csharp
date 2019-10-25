@@ -7,7 +7,7 @@ namespace Spotifree.Helper
 {
     public class Dictionary
     {
-        public string getString(string key, Dictionary<string,string> data)
+        public string GetString(string key, Dictionary<string,string> data)
         {
             string keyValue;
             bool hasKey = data.TryGetValue(key, out keyValue);

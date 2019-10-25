@@ -3,10 +3,28 @@ using System.Web;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-namespace Spotifree
+namespace Spotifree.Models
 {
-    public class Album : List, List_Interface
+    public class Album : List
     {
+        public Album()
+        {
+            this.Is_Album = 1;
+        }
+
+        public List AlbumToList(Album album)
+        {
+            List list = new List();
+            list.Id = album.Id;
+            list.Created = album.Created;
+            list.Modified = album.Modified;
+            list.Is_Album = album.Is_Album;
+            list.Name = album.Name;
+            list.User = album.User;
+
+            return list;
+        }
+        /**
         public List newList(Dictionary<string, string> data)
         {
             data["IsAlbum"] = "1";
@@ -31,6 +49,6 @@ namespace Spotifree
         public List remove(Music music, List list)
         {
             return base.removeMusic(music, list);
-        }
+        }*/
     }
 }

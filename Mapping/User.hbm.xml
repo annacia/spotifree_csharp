@@ -2,11 +2,13 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
   assembly="Spotifree"
   namespace="Spotifree.Models">
-  <class name="Category">
+  <class name="User">
     <id name="Id">
       <generator class="identity" />
     </id>
     <property name="Name" />
+    <property name="Password" />
+    <property name="Email" />
     <property name="Created" />
     <property name="Modified" />
     <bag name="Musics" fetch="join">

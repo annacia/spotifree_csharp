@@ -7,11 +7,11 @@ using System.Web;
 
 namespace Spotifree.DAO
 {
-    public class DAO_User:DAO_Abstract
+    public class DAO_Music:DAO_Abstract
     {
         public override Model_Abstract SearchById(int id)
         {
-            User model = Session.Get<User>(id);
+            Music model = Session.Get<Music>(id);
 
             return model;
         }
