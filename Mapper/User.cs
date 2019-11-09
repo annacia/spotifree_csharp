@@ -109,5 +109,18 @@ namespace Spotifree.Mapper
             this.Model = this.Load(id);
         }
 
+        public void validate(User usuario)
+        {
+            if (string.IsNullOrEmpty(usuario.Name) || (usuario.Name.Length == 0))
+            {
+                throw new Exception("Nome é obrigatório");
+            }
+
+            if (usuario.Email.Length == 0)
+            {
+                throw new Exception("email é obrigatório");
+            }
+        }
+
     }
 }
