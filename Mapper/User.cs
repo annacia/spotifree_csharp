@@ -3,8 +3,6 @@ using Spotifree.Helper;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Spotifree.Mapper
 {
@@ -48,7 +46,8 @@ namespace Spotifree.Mapper
             try
             {
                 User user = Model as User;
-                user.Created = DateTime.Today;
+                user.Created = DateTime.Now;
+                user.Password = this.Cryptography.Encode(user.Password);
                 Dao.Insert(user);
             }
             catch (InvalidCastException e)
@@ -68,10 +67,10 @@ namespace Spotifree.Mapper
                 User user = Model as User;
                 User userUpdate = Dao.SearchById(user.Id) as User;
                 
-                userUpdate.Modified = DateTime.Today;
+                userUpdate.Modified = DateTime.Now;
                 userUpdate.Email = user.Email;
                 userUpdate.Name = user.Name;
-                userUpdate.Password = user.Password;
+                userUpdate.Password = this.Cryptography.Encode(user.Password);
 
                 Dao.Update(userUpdate);
             }
@@ -107,6 +106,24 @@ namespace Spotifree.Mapper
         public void SetModelById(int id)
         {
             this.Model = this.Load(id);
+        }
+
+        public void validate(User usuario)
+        {
+            if (string.IsNullOrEmpty(usuario.Name) || (usuario.Name.Length == 0))
+            {
+                throw new Exception("Nome é obrigatório");
+            }
+
+            if (usuario.Email.Length == 0)
+            {
+                throw new Exception("email é obrigatório");
+            }
+
+            if(string.IsNullOrEmpty(usuario.Password))
+            {
+                throw new Exception("senha é obrigatória");
+            }
         }
 
     }

@@ -19,14 +19,19 @@ namespace Spotifree.Models
 
         private DateTime modified;
 
+        private int fk_user;
+        
         private User user;
 
         public virtual int Id { get => id; set => id = value; }
         public virtual string Name { get => name; set => name = value; }
         public virtual DateTime Created { get => created; set => created = value; }
         public virtual DateTime Modified { get => modified; set => modified = value; }
+        
         public virtual User User { get => user; set => user = value; }
         public virtual int Is_Album { get => is_album; set => is_album = value; }
+
+        public virtual int Fk_User { get => fk_user; set => fk_user = value; }
 
         public virtual IList<Music> Musics { get; set; }
     }

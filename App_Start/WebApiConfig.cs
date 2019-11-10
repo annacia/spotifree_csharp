@@ -9,7 +9,10 @@ namespace Spotifree
     {
         public static void Register(HttpConfiguration config)
         {
-            // Serviços e configuração da API da Web
+            // Serviços e configuração da API da 
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            //config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
 
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
