@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Spotifree.DAO;
 using Spotifree.Models;
 
 namespace Spotifree.Mapper
@@ -13,24 +14,59 @@ namespace Spotifree.Mapper
             throw new NotImplementedException();
         }
 
+        public Mapper_List()
+        {
+            Dao = new DAO_List();
+            Model = new List();
+        }
+
         public Model_Abstract Load(int id)
         {
-            throw new NotImplementedException();
+            return Dao.SearchById(id) as List;
         }
 
         public bool Register()
         {
-            throw new NotImplementedException();
+            bool status = true;
+            try
+            {
+                List list = Model as List;
+                Dao.Insert(list);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                status = false;
+            }
+
+            return status;
         }
 
         public void SetModelById(int id)
         {
-            throw new NotImplementedException();
+            this.Model = this.Load(id);
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            bool status = true;
+            try
+            {
+                List user = Model as List;
+                List userUpdate = Dao.SearchById(user.Id) as List;
+
+                userUpdate.Modified = DateTime.Now;
+                userUpdate.Name = user.Name;
+
+                Dao.Update(userUpdate);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                status = false;
+            }
+
+            return status;
         }
     }
 }
