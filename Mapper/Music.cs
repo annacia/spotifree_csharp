@@ -59,7 +59,20 @@ namespace Spotifree.Mapper
 
         public bool Register()
         {
-            throw new NotImplementedException();
+            bool status = true;
+            try
+            {
+                Music music = Model as Music;
+                music.Created = DateTime.Now;
+                Dao.Insert(music);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                status = false;
+            }
+
+            return status;
         }
 
         public void SetModelById(int id)
@@ -70,6 +83,17 @@ namespace Spotifree.Mapper
         public bool Update()
         {
             throw new NotImplementedException();
+        }
+
+        public void validate(Music musica)
+        {
+            if(musica.User == null || musica.Category == null) {
+                throw new Exception("Ocorreu um erro ao executar a operação");
+            }
+
+            if(string.IsNullOrEmpty(musica.Name)) {
+                throw new Exception("nome da musica deve ser informado");
+            }
         }
     }
 }
