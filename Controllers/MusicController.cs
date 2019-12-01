@@ -28,7 +28,7 @@ namespace Spotifree.Controllers
         public IHttpActionResult Get(int id)
         {
             DAO_Music select = new DAO_Music();
-            Music retorno = (Music)select.SearchById(id);
+            Music retorno = (Music) select.SearchById(id);
 
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
