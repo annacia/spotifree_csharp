@@ -3,7 +3,6 @@ using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,10 +12,13 @@ namespace Spotifree.Controllers
     public class CategoryController : ApiController
     {
         // GET: api/User
-        //public IEnumerable<string> GetAll()
-        //{
+        public IHttpActionResult Get()
+        {
+            DAO_Category select = new DAO_Category();
+            IList<Category> retorno = select.Search();
 
-        //}
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+        }
 
         // GET: api/User/5
         public IHttpActionResult Get(int id)

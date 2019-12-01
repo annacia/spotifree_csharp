@@ -19,16 +19,19 @@ namespace Spotifree.Controllers
         private IDictionary<string, object> json;
 
         // GET: api/Music
-        //public IEnumerable<string> Get()
-        //{
-         //   return new string[] { "value1", "value2" };
-        //}
+        public IHttpActionResult Get()
+        {
+            DAO_Music select = new DAO_Music();
+            IList<Music> retorno = select.Search();
+
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+        }
 
         // GET: api/Music/5
         public IHttpActionResult Get(int id)
         {
-            DAO_Music select = new DAO_Music();
-            Music retorno = (Music) select.SearchById(id);
+            Mapper_Music select = new Mapper_Music();
+            Music retorno = (Music) select.Load(id);
 
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }

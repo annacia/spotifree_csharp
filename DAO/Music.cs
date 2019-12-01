@@ -1,4 +1,5 @@
 ﻿using Spotifree.Models;
+using System.Collections.Generic;
 
 namespace Spotifree.DAO
 {
@@ -14,6 +15,14 @@ namespace Spotifree.DAO
                     .JoinAlias(x => x.Category, () => category)
                     .Where(x => x.Id == id)
                     .SingleOrDefault();
+        }
+
+        public IList<Music> Search()
+        {
+            return Session.QueryOver<Music>()
+                    .JoinAlias(x => x.User, () => user)
+                    .JoinAlias(x => x.Category, () => category)
+                    .List();
         }
     }
 }
