@@ -9,11 +9,18 @@ namespace Spotifree.DAO
 {
     public class DAO_List:DAO_Abstract
     {
+        private Music music;
+        private User user; 
+        private Category category;
+
         public override Model_Abstract SearchById(int id)
         {
-            List model = Session.Get<List>(id);
-
-            return model;
+            return Session.QueryOver<List>()
+                   .JoinAlias(x => x.Musics, () => music)
+                   .JoinAlias(x => x.User, () => user)
+                   .JoinAlias(x => music.Category, () => category)
+                   .Where(x => x.Id == id)
+                   .SingleOrDefault();
         }
 
         public IList<Music> AddMusic(Music music, List list)
