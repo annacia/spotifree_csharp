@@ -1,38 +1,39 @@
-﻿using Spotifree.Mapper;
+﻿using Spotifree.DAO;
+using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
 namespace Spotifree.Controllers
 {
-    public class ListController : ApiController
+    public class CategoryController : ApiController
     {
-        // GET: api/List
-        //public IEnumerable<string> Get()
+        // GET: api/User
+        //public IEnumerable<string> GetAll()
         //{
-         //   return new string[] { "value1", "value2" };
+
         //}
 
-        // GET: api/List/5
+        // GET: api/User/5
         public IHttpActionResult Get(int id)
         {
+            DAO_Category select = new DAO_Category();
+            Category retorno = (Category)select.SearchById(id);
 
-            Mapper_List mapper = new Mapper_List();
-            List retorno = (List) mapper.Load(id);
-            
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
 
-        // POST: api/List
-        public IHttpActionResult Post([FromBody]List value)
+        // POST: api/User
+        public IHttpActionResult Post([FromBody]Category value)
         {
             try
             {
-                Mapper_List mapper = new Mapper_List();
-                //mapper.validate(value);
+                Mapper_Category mapper = new Mapper_Category();
+                mapper.validate(value);
                 mapper.Model = value;
                 mapper.Register();
 
@@ -49,18 +50,18 @@ namespace Spotifree.Controllers
             }
         }
 
-        // PUT: api/List/5
-        public IHttpActionResult Put(int id, [FromBody]List value)
+        // PUT: api/User/5
+        public IHttpActionResult Put(int id, [FromBody]Category value)
         {
             try
             {
                 value.Id = id;
-                Mapper_List update = new Mapper_List();
-                //update.validate(value);
+                Mapper_Category update = new Mapper_Category();
+                update.validate(value);
                 update.Model = value;
                 update.Update();
 
-                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, value));
+                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, update.Model));
             }
             catch (Exception e)
             {
@@ -73,12 +74,13 @@ namespace Spotifree.Controllers
             }
         }
 
-        // DELETE: api/List/5
+        // DELETE: api/User/5
         public void Delete(int id)
         {
-            Mapper_List delete = new Mapper_List();
+            Mapper_Category delete = new Mapper_Category();
             delete.Model = delete.Load(id);
             delete.Delete();
         }
     }
 }
+
