@@ -1,7 +1,6 @@
 ﻿using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -10,12 +9,6 @@ namespace Spotifree.Controllers
 {
     public class ListController : ApiController
     {
-        // GET: api/List
-        //public IEnumerable<string> Get()
-        //{
-         //   return new string[] { "value1", "value2" };
-        //}
-
         // GET: api/List/5
         public IHttpActionResult Get(int id)
         {
