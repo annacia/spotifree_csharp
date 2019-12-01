@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Spotifree.DAO;
+using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
@@ -13,8 +13,8 @@ namespace Spotifree.Controllers
     {
         public IHttpActionResult Get()
         {
-            DAO_List select = new DAO_List();
-            List retorno = (List) select.SearchById(1);
+            Mapper_List mapper = new Mapper_List();
+            List retorno = (List) mapper.Load(1);
 
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }

@@ -108,7 +108,7 @@ namespace Spotifree.Mapper
             this.Model = this.Load(id);
         }
 
-        public void validate(User usuario)
+        public void Validate(User usuario)
         {
             if (string.IsNullOrEmpty(usuario.Name) || (usuario.Name.Length == 0))
             {
