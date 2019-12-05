@@ -37,6 +37,7 @@ namespace Spotifree.Mapper
             {
                 Category category = Model as Category;
                 category.Created = DateTime.Now;
+                Model = category;
                 Dao.Insert(category);
             }
             catch (InvalidCastException e)
@@ -58,7 +59,7 @@ namespace Spotifree.Mapper
 
                 categoryUpdate.Modified = DateTime.Now;
                 categoryUpdate.Name = category.Name;
-                categoryUpdate.Name = category.Name;
+                Model = categoryUpdate;
 
                 Dao.Update(categoryUpdate);
             }
@@ -80,7 +81,7 @@ namespace Spotifree.Mapper
             this.Model = this.Load(id);
         }
 
-        public void validate(Category categoria)
+        public void Validate(Category categoria)
         {
             if (string.IsNullOrEmpty(categoria.Name) || (categoria.Name.Length == 0))
             {

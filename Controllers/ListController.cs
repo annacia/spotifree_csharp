@@ -1,4 +1,5 @@
-﻿using Spotifree.Mapper;
+﻿using Newtonsoft.Json.Linq;
+using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
 using System.Net;
@@ -14,7 +15,7 @@ namespace Spotifree.Controllers
         {
 
             Mapper_List mapper = new Mapper_List();
-            List retorno = (List) mapper.Load(id);
+            List retorno = (List) mapper.FetchOne(id);
             
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
@@ -24,8 +25,11 @@ namespace Spotifree.Controllers
         {
             try
             {
+                Mapper_User mapperUser = new Mapper_User();
                 Mapper_List mapper = new Mapper_List();
-                //mapper.validate(value);
+                Model_Abstract user = mapperUser.Load(value.Fk_User);
+                //mapper.Validate(value);
+                value.User = user as User;
                 mapper.Model = value;
                 mapper.Register();
 
@@ -54,6 +58,38 @@ namespace Spotifree.Controllers
                 update.Update();
 
                 return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, value));
+            }
+            catch (Exception e)
+            {
+                var retorno = new
+                {
+                    Erro = e.Message
+                };
+
+                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+            }
+        }
+
+
+        [HttpPost]
+        [ActionName("insert_music")]
+        [Route("id/{idList:int}")]
+        public IHttpActionResult InsertMusic(int idList, [FromBody] JObject data)
+        {
+            try
+            {
+                int idMusic = Int32.Parse(data.GetValue("id_music").ToString());
+
+                Mapper_List mapper = new Mapper_List();
+                mapper.Model = mapper.Load(idList);
+
+                Mapper_Music mapperMusic = new Mapper_Music();
+                Music music = mapper.Load(idMusic) as Music;
+
+                mapper.InsertMusic(music);
+
+                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, mapper.Model));
+
             }
             catch (Exception e)
             {

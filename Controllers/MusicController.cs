@@ -1,4 +1,4 @@
-﻿using Spotifree.DAO;
+﻿using Spotifree.Helper;
 using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
@@ -14,21 +14,23 @@ namespace Spotifree.Controllers
 {
     public class MusicController : ApiController
     {
-        private string music_path = "~/Data/Musicas/";
         private HttpPostedFile postedFile;
         private IDictionary<string, object> json;
+        private File file;
+
+        public File File { get => file; set => file = value; }
 
         // GET: api/Music
         //public IEnumerable<string> Get()
         //{
-         //   return new string[] { "value1", "value2" };
+        //   return new string[] { "value1", "value2" };
         //}
 
         // GET: api/Music/5
         public IHttpActionResult Get(int id)
         {
-            DAO_Music select = new DAO_Music();
-            Music retorno = (Music) select.SearchById(id);
+            Mapper_Music select = new Mapper_Music();
+            Music retorno = (Music)select.FetchOne(id);
 
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
@@ -38,33 +40,38 @@ namespace Spotifree.Controllers
         {
             try
             {
-                FileValidate();
+                File = new File();
+                File.Request = HttpContext.Current.Request;
+                File.Type = "audio/mpeg";
+                File.FileValidate("É necessário enviar um arquivo de audio");
 
                 var jsonRequest = await Request.Content.ReadAsMultipartAsync();
                 var json_serializer = new JavaScriptSerializer();
                 this.json = (IDictionary<string, object>)json_serializer.DeserializeObject(await jsonRequest.Contents[0].ReadAsStringAsync());
 
                 Mapper_Music mapper = new Mapper_Music();
-                Music musica = new Music();
-                DAO_User user = new DAO_User();
-                DAO_Category category = new DAO_Category();
+                Music music = new Music();
+                Mapper_User user = new Mapper_User();
+                Mapper_Category category = new Mapper_Category();
 
-                musica.Name = postedFile.FileName;
-                musica.User = (User)user.SearchById((int)json["fk_user"]);
-                musica.Category = (Category)category.SearchById((int)json["fk_category"]);
-                mapper.validate(musica);
-                string music_path = this.music_path + musica.User.Id + "/";
-                musica.Dir_music = music_path;
-                mapper.Model = musica;
+                music.Name = (string)json["music_name"];
+                music.User = (User)user.Load((int)json["fk_user"]);
+                music.Category = (Category)category.Load((int)json["fk_category"]);
+                mapper.Validate(music);
+
+                File.Directory.ServerPath = "~/Data/Musicas/";
+                File.Directory.Path = music.User.Id + "/";
+                File.ConfigurePath(music.Name);
+                File.Upload();
+
+                music.Dir_music = File.FullPath;
+                mapper.Model = music;
                 mapper.Register();
-
-                var filePath = HttpContext.Current.Server.MapPath(music_path);
-                System.IO.Directory.CreateDirectory(filePath);
-                postedFile.SaveAs(filePath + postedFile.FileName);
 
                 return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, mapper.Model));
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 var retorno = new
                 {
@@ -76,8 +83,26 @@ namespace Spotifree.Controllers
         }
 
         // PUT: api/Music/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, [FromBody]Music value)
         {
+            try
+            {
+                value.Id = id;
+                Mapper_Music mapper = new Mapper_Music();
+                mapper.Model = value;
+                mapper.Update();
+
+                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, value));
+            }
+            catch (Exception e)
+            {
+                var retorno = new
+                {
+                    Erro = e.Message
+                };
+
+                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+            }
         }
 
         // DELETE: api/Music/5
@@ -88,23 +113,5 @@ namespace Spotifree.Controllers
             delete.Delete();
         }
 
-        private void FileValidate()
-        {
-            var httpRequest = HttpContext.Current.Request;
-            if (httpRequest.Files.Count < 1)
-            {
-                throw new Exception("deve ser enviado um arquivo de musica");
-            }
-
-            foreach (string file in httpRequest.Files)
-            {
-                this.postedFile = httpRequest.Files[file];
-
-                if (postedFile.ContentType != "audio/mpeg") {
-                    throw new Exception("Arquivo enviado deve ser uma musica"); 
-                }
-            }
-
-        }
     }
 }

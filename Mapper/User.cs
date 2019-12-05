@@ -17,6 +17,12 @@ namespace Spotifree.Mapper
             Model = new User();
         }
 
+        public User FetchOne(int id)
+        {
+            DAO_User dao = Dao as DAO_User;
+            return dao.FetchOne(id);
+        }
+
         public Password_Cryptography Cryptography { get => cryptography; set => cryptography = value; }
 
         public override void DictionaryToModel(Dictionary<string, string> data)
@@ -108,7 +114,7 @@ namespace Spotifree.Mapper
             this.Model = this.Load(id);
         }
 
-        public void validate(User usuario)
+        public void Validate(User usuario)
         {
             if (string.IsNullOrEmpty(usuario.Name) || (usuario.Name.Length == 0))
             {

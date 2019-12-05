@@ -7,13 +7,17 @@ namespace Spotifree.Helper
 {
     public class Directory
     {
+        private string serverPath;
         private string path;
 
         public string Path { get => path; set => path = value; }
+        public string ServerPath { get => serverPath; set => serverPath = value; }
 
-        public void CreateFolder()
+        public string CreateFolder()
         {
-            System.IO.Directory.CreateDirectory(Path);
+            string folder = HttpContext.Current.Server.MapPath(ServerPath + Path);
+            System.IO.Directory.CreateDirectory(folder);
+            return folder;
         }
 
         public void ConfigureFolder(string localFolder, string folder)
