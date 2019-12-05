@@ -57,6 +57,13 @@ namespace Spotifree.Mapper
             return Dao.SearchById(id) as Music;
         }
 
+        public Music FetchOne(int id)
+        {
+            DAO_Music dao = new DAO_Music();
+
+            return dao.FetchOneById(id);
+        }
+
         public bool Register()
         {
             bool status = true;
@@ -77,15 +84,33 @@ namespace Spotifree.Mapper
 
         public void SetModelById(int id)
         {
-            throw new NotImplementedException();
+            this.Model = this.Load(id);
         }
 
         public bool Update()
         {
-            throw new NotImplementedException();
+            bool status = true;
+            try
+            {
+                Music music = Model as Music;
+                Music musicUpdate = Dao.SearchById(music.Id) as Music;
+
+                musicUpdate.Modified = DateTime.Now;
+                musicUpdate.Name = music.Name;
+                Model = musicUpdate;
+
+                Dao.Update(musicUpdate);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                status = false;
+            }
+
+            return status;
         }
 
-        public void validate(Music musica)
+        public void Validate(Music musica)
         {
             if(musica.User == null || musica.Category == null) {
                 throw new Exception("Ocorreu um erro ao executar a operação");

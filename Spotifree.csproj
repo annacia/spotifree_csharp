@@ -19,8 +19,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44354</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -175,6 +175,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\MusicController.cs" />
+    <Compile Include="Controllers\MusicListController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAO\Music.cs" />
     <Compile Include="DAO\List.cs" />

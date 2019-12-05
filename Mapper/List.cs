@@ -25,12 +25,21 @@ namespace Spotifree.Mapper
             return Dao.SearchById(id) as List;
         }
 
+        public List FetchOne(int id)
+        {
+            DAO_List dao = new DAO_List();
+
+            return dao.FetchOne(id);
+        }
+
         public bool Register()
         {
             bool status = true;
             try
             {
                 List list = Model as List;
+                list.Created = DateTime.Now;
+
                 Dao.Insert(list);
             }
             catch (InvalidCastException e)
@@ -52,13 +61,13 @@ namespace Spotifree.Mapper
             bool status = true;
             try
             {
-                List user = Model as List;
-                List userUpdate = Dao.SearchById(user.Id) as List;
+                List list = Model as List;
+                List listUpdate = Dao.SearchById(list.Id) as List;
 
-                userUpdate.Modified = DateTime.Now;
-                userUpdate.Name = user.Name;
+                listUpdate.Modified = DateTime.Now;
+                listUpdate.Name = list.Name;
 
-                Dao.Update(userUpdate);
+                Dao.Update(listUpdate);
             }
             catch (InvalidCastException e)
             {
@@ -67,6 +76,81 @@ namespace Spotifree.Mapper
             }
 
             return status;
+        }
+
+        public bool RemoveMusic(Music music)
+        {
+            try
+            {
+                List list = Model as List;
+                DAO_List dao = Dao as DAO_List;
+                List listcomplete = dao.FetchOne(list.Id);
+
+                dao.RemoveMusic(music, listcomplete);
+                return true;
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                return false;
+            }
+        }
+
+        public bool InsertMusic(Music music)
+        {
+            try
+            {
+                List list = Model as List;
+                bool sameUser = music.User.Id == list.User.Id;
+                bool isAlbum = list.Is_Album == 1;
+
+                if (isAlbum)
+                {
+                    return this.InsertMusicAlbum(music, list);
+                }
+
+                return this.InsertMusicPlaylist(music, list);
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                return false;
+            }
+        }
+
+        private bool InsertMusicAlbum(Music music, List album)
+        {
+            try
+            {
+                if (music.User.Id == album.User.Id)
+                {
+                    DAO_List listDao = Dao as DAO_List;
+                    listDao.AddMusic(music,album);
+                    return true;
+                }
+                return false;
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                return false;
+            }
+
+        }
+
+        private bool InsertMusicPlaylist(Music music, List playlist)
+        {
+            try
+            {
+                DAO_List listDao = Dao as DAO_List;
+                listDao.AddMusic(music, playlist);
+                return true;
+            }
+            catch (InvalidCastException e)
+            {
+                Console.WriteLine("IOException source: {0}", e.Source);
+                return false;
+            }
         }
     }
 }

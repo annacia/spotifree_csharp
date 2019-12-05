@@ -1,5 +1,4 @@
-﻿using Spotifree.DAO;
-using Spotifree.Mapper;
+﻿using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
@@ -20,8 +19,8 @@ namespace Spotifree.Controllers
         // GET: api/User/5
         public IHttpActionResult Get(int id)
         {
-            DAO_User select = new DAO_User();
-            User retorno = (User)select.SearchById(id);
+            Mapper_User mapper = new Mapper_User();
+            User retorno = (User)mapper.Load(id);
 
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
@@ -32,7 +31,7 @@ namespace Spotifree.Controllers
             try
             {
                 Mapper_User mapper = new Mapper_User();
-                mapper.validate(value);
+                mapper.Validate(value);
                 mapper.Model = value;
                 mapper.Register();
 
@@ -56,7 +55,7 @@ namespace Spotifree.Controllers
             {
                 value.Id = id;
                 Mapper_User update = new Mapper_User();
-                update.validate(value);
+                update.Validate(value);
                 update.Model = value;
                 update.Update();
 
