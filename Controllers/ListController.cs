@@ -10,7 +10,8 @@ namespace Spotifree.Controllers
 {
     public class ListController : ApiController
     {
-        // GET: api/List/5
+        // GET: api/List/
+        [Authorize]
         public IHttpActionResult Get(int id)
         {
 
@@ -21,6 +22,7 @@ namespace Spotifree.Controllers
         }
 
         // POST: api/List
+        [Authorize]
         public IHttpActionResult Post([FromBody]List value)
         {
             try
@@ -47,6 +49,7 @@ namespace Spotifree.Controllers
         }
 
         // PUT: api/List/5
+        [Authorize]
         public IHttpActionResult Put(int id, [FromBody]List value)
         {
             try
@@ -74,6 +77,7 @@ namespace Spotifree.Controllers
         [HttpPost]
         [ActionName("insert_music")]
         [Route("id/{idList:int}")]
+        [Authorize]
         public IHttpActionResult InsertMusic(int idList, [FromBody] JObject data)
         {
             try
@@ -103,6 +107,7 @@ namespace Spotifree.Controllers
         }
 
         // DELETE: api/List/5
+        [Authorize]
         public void Delete(int id)
         {
             Mapper_List delete = new Mapper_List();

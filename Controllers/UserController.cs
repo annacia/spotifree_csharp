@@ -17,6 +17,7 @@ namespace Spotifree.Controllers
         //}
 
         // GET: api/User/5
+        [Authorize]
         public IHttpActionResult Get(int id)
         {
             Mapper_User mapper = new Mapper_User();
@@ -49,6 +50,7 @@ namespace Spotifree.Controllers
         }
 
         // PUT: api/User/5
+        [Authorize]
         public IHttpActionResult Put(int id, [FromBody]User value)
         {
             try
@@ -72,6 +74,7 @@ namespace Spotifree.Controllers
         }
 
         // DELETE: api/User/5
+        [Authorize]
         public void Delete(int id)
         {
             Mapper_User delete = new Mapper_User();

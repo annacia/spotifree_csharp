@@ -18,6 +18,7 @@ namespace Spotifree.Controllers
         //}
 
         // GET: api/User/5
+        [Authorize]
         public IHttpActionResult Get(int id)
         {
             Mapper_Category mapper = new Mapper_Category();
@@ -27,6 +28,7 @@ namespace Spotifree.Controllers
         }
 
         // POST: api/User
+        [Authorize]
         public IHttpActionResult Post([FromBody]Category value)
         {
             try
@@ -50,6 +52,7 @@ namespace Spotifree.Controllers
         }
 
         // PUT: api/User/5
+        [Authorize]
         public IHttpActionResult Put(int id, [FromBody]Category value)
         {
             try
@@ -74,6 +77,7 @@ namespace Spotifree.Controllers
         }
 
         // DELETE: api/User/5
+        [Authorize]
         public void Delete(int id)
         {
             Mapper_Category delete = new Mapper_Category();

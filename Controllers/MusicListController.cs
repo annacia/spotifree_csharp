@@ -25,6 +25,7 @@ namespace Spotifree.Controllers
         }
 
         // POST api/<controller>
+        [Authorize]
         public IHttpActionResult Post([FromBody] JObject data)
         {
             try

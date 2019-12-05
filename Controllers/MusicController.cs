@@ -27,6 +27,7 @@ namespace Spotifree.Controllers
         //}
 
         // GET: api/Music/5
+        [Authorize]
         public IHttpActionResult Get(int id)
         {
             Mapper_Music select = new Mapper_Music();
@@ -36,6 +37,7 @@ namespace Spotifree.Controllers
         }
 
         // POST: api/Music
+        [Authorize]
         public async Task<IHttpActionResult> PostAsync()
         {
             try
@@ -83,6 +85,7 @@ namespace Spotifree.Controllers
         }
 
         // PUT: api/Music/5
+        [Authorize]
         public IHttpActionResult Put(int id, [FromBody]Music value)
         {
             try
@@ -106,6 +109,7 @@ namespace Spotifree.Controllers
         }
 
         // DELETE: api/Music/5
+        [Authorize]
         public void Delete(int id)
         {
             Mapper_Music delete = new Mapper_Music();
