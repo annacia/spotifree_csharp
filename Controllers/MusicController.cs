@@ -35,6 +35,14 @@ namespace Spotifree.Controllers
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
 
+        public IHttpActionResult GetMusicByName(string name)
+        {
+            Mapper_Music music = new Mapper_Music();
+            IList<Music> retorno = music.getByName(name);
+
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+        }
+
         // POST: api/Music
         public async Task<IHttpActionResult> PostAsync()
         {

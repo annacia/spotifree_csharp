@@ -64,6 +64,13 @@ namespace Spotifree.Mapper
             return dao.FetchOneById(id);
         }
 
+        public IList<Music> getByName(string name)
+        {
+            DAO_Music dao = new DAO_Music();
+
+            return dao.FetchByName(name);
+        }
+
         public bool Register()
         {
             bool status = true;
