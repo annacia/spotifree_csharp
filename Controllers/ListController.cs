@@ -2,6 +2,7 @@
 using Spotifree.Mapper;
 using Spotifree.Models;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -108,6 +109,17 @@ namespace Spotifree.Controllers
             Mapper_List delete = new Mapper_List();
             delete.Model = delete.Load(id);
             delete.Delete();
+        }
+
+        public IHttpActionResult GetByUser(int id)
+        {
+            Mapper_List list = new Mapper_List();
+            Mapper_User mapperUser = new Mapper_User();
+            User user = mapperUser.Load(id) as User;
+
+            IList<List> retorno = list.GetByUser(user);
+
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
     }
 }
