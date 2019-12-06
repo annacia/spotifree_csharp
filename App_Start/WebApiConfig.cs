@@ -24,6 +24,12 @@ namespace Spotifree
             );
 
             config.Routes.MapHttpRoute(
+                "List",                                           // Route name
+                "api/List/GetByUser/{id}",                        // URL with parameters
+                new { controller = "List", action = "GetByUser" } // Parameter defaults
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
