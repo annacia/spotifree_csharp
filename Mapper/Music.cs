@@ -127,5 +127,12 @@ namespace Spotifree.Mapper
                 throw new Exception("nome da musica deve ser informado");
             }
         }
+        public IList<Music> GetByUser(User user)
+        {
+            DAO_Music dao = new DAO_Music();
+
+            return dao.GetByUserId(user.Id);
+        }
+
     }
 }

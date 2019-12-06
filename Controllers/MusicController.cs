@@ -130,5 +130,16 @@ namespace Spotifree.Controllers
             delete.Delete();
         }
 
+        public IHttpActionResult GetByUser(int id)
+        {
+            Mapper_Music music = new Mapper_Music();
+            Mapper_User mapperUser = new Mapper_User();
+            User user = mapperUser.Load(id) as User;
+
+            IList<Music> retorno = music.GetByUser(user);
+
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+        }
+
     }
 }
