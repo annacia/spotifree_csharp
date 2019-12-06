@@ -1,4 +1,4 @@
-﻿using NHibernate;
+using NHibernate;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;

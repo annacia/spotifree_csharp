@@ -20,7 +20,6 @@ namespace Spotifree.DAO
         {
             return Session.QueryOver<Music>()
                     .JoinAlias(x => x.User, () => user)
-                    .JoinAlias(x => x.Category, () => category)
                     .Where(x => x.Id == id)
                     .SingleOrDefault();
         }
@@ -29,7 +28,6 @@ namespace Spotifree.DAO
         {
             return Session.QueryOver<Music>()
                     .JoinAlias(x => x.User, () => user)
-                    .JoinAlias(x => x.Category, () => category)
                     .WhereRestrictionOn(x => x.Name).IsLike(name, MatchMode.Anywhere)
                     .List();
         }

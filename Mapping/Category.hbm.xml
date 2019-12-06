@@ -10,7 +10,7 @@
     <property name="Created" />
     <property name="Modified" />
     <bag name="Musics" fetch="join">
-      <key column="Id"/>
+      <key column="fk_category"/>
       <one-to-many class="Music"/>
     </bag>
   </class>
