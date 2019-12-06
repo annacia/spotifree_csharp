@@ -17,5 +17,11 @@ namespace Spotifree.DAO
             return model;
         }
 
+        public IList<Category> FetchAll()
+        {
+            return Session.QueryOver<Category>()
+                    .List();
+        }
+
     }
 }

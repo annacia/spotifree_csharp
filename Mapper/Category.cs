@@ -81,6 +81,12 @@ namespace Spotifree.Mapper
             this.Model = this.Load(id);
         }
 
+        public IList<Category> GetAll()
+        {
+            DAO_Category select = new DAO_Category();
+            return select.FetchAll();
+        }
+
         public void Validate(Category categoria)
         {
             if (string.IsNullOrEmpty(categoria.Name) || (categoria.Name.Length == 0))
