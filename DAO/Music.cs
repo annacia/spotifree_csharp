@@ -33,5 +33,13 @@ namespace Spotifree.DAO
                     .WhereRestrictionOn(x => x.Name).IsLike(name, MatchMode.Anywhere)
                     .List();
         }
+
+        public IList<Music> GetByUserId(int id)
+        {
+            return Session.QueryOver<Music>()
+                    .JoinAlias(x => x.User, () => user)
+                    .Where(x => x.User.Id == id)
+                    .List();
+        }
     }
 }
