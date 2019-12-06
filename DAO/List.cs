@@ -25,7 +25,6 @@ namespace Spotifree.DAO
             return Session.QueryOver<List>()
                    .JoinAlias(x => x.Musics, () => music)
                    .JoinAlias(x => x.User, () => user)
-                   .JoinAlias(x => music.Category, () => category)
                    .Where(x => x.Id == id)
                    .SingleOrDefault();
         }
