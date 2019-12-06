@@ -18,6 +18,12 @@ namespace Spotifree
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                "Music",                                           // Route name
+                "api/Music/GetByName/{name}",                            // URL with parameters
+                new { controller = "Music", action = "GetMusicByName" }  // Parameter defaults
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
