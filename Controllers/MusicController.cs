@@ -50,7 +50,7 @@ namespace Spotifree.Controllers
             {
                 File = new File();
                 File.Request = HttpContext.Current.Request;
-                File.Type = "audio/mpeg";
+                File.Type = "audio/mp3";
                 File.FileValidate("É necessário enviar um arquivo de audio");
 
                 var jsonRequest = await Request.Content.ReadAsMultipartAsync();
