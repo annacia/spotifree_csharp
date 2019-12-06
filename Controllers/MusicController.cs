@@ -83,16 +83,25 @@ namespace Spotifree.Controllers
         }
 
         // PUT: api/Music/5
-        public IHttpActionResult Put(int id, [FromBody]Music value)
+        public async Task<IHttpActionResult> Put(int id)
         {
             try
             {
-                value.Id = id;
+                var jsonRequest = await Request.Content.ReadAsMultipartAsync();
+                var json_serializer = new JavaScriptSerializer();
+                this.json = (IDictionary<string, object>)json_serializer.DeserializeObject(await jsonRequest.Contents[0].ReadAsStringAsync());
+
+                Mapper_Category category = new Mapper_Category();
                 Mapper_Music mapper = new Mapper_Music();
-                mapper.Model = value;
+                Music music = mapper.Load(id) as Music;
+
+                music.Name = (string)json["music_name"];
+                music.Category = (Category)category.Load((int)json["fk_category"]);
+                
+                mapper.Model = music;
                 mapper.Update();
 
-                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, value));
+                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, music));
             }
             catch (Exception e)
             {
