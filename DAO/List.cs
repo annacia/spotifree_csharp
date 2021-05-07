@@ -58,6 +58,14 @@ namespace Spotifree.DAO
             return list.Musics;
         }
 
+        public IList<List> GetByUserId(int id)
+        {
+            return Session.QueryOver<List>()
+                    .JoinAlias(x => x.User, () => user)
+                    .Where(x => x.User.Id == id)
+                    .List();
+        }
+
         private int IndexOfMusicInList(IList<Music> musics, Music music)
         {
             int length = musics.Count;

@@ -1,4 +1,4 @@
-﻿using NHibernate;
+using NHibernate;
 using Spotifree.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,12 @@ namespace Spotifree.DAO
             Category model = Session.Get<Category>(id);
 
             return model;
+        }
+
+        public IList<Category> FetchAll()
+        {
+            return Session.QueryOver<Category>()
+                    .List();
         }
 
     }

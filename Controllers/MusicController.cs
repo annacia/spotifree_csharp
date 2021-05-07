@@ -36,6 +36,14 @@ namespace Spotifree.Controllers
             return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
 
+        public IHttpActionResult GetMusicByName(string name)
+        {
+            Mapper_Music music = new Mapper_Music();
+            IList<Music> retorno = music.getByName(name);
+
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+        }
+
         // POST: api/Music
         [Authorize]
         public async Task<IHttpActionResult> PostAsync()
@@ -85,17 +93,25 @@ namespace Spotifree.Controllers
         }
 
         // PUT: api/Music/5
-        [Authorize]
         public IHttpActionResult Put(int id, [FromBody]Music value)
         {
             try
             {
-                value.Id = id;
+                var jsonRequest = await Request.Content.ReadAsMultipartAsync();
+                var json_serializer = new JavaScriptSerializer();
+                this.json = (IDictionary<string, object>)json_serializer.DeserializeObject(await jsonRequest.Contents[0].ReadAsStringAsync());
+
+                Mapper_Category category = new Mapper_Category();
                 Mapper_Music mapper = new Mapper_Music();
-                mapper.Model = value;
+                Music music = mapper.Load(id) as Music;
+
+                music.Name = (string)json["music_name"];
+                music.Category = (Category)category.Load((int)json["fk_category"]);
+                
+                mapper.Model = music;
                 mapper.Update();
 
-                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, value));
+                return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, music));
             }
             catch (Exception e)
             {
@@ -115,6 +131,17 @@ namespace Spotifree.Controllers
             Mapper_Music delete = new Mapper_Music();
             delete.Model = delete.Load(id);
             delete.Delete();
+        }
+
+        public IHttpActionResult GetByUser(int id)
+        {
+            Mapper_Music music = new Mapper_Music();
+            Mapper_User mapperUser = new Mapper_User();
+            User user = mapperUser.Load(id) as User;
+
+            IList<Music> retorno = music.GetByUser(user);
+
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
         }
 
     }

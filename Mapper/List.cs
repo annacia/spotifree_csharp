@@ -32,6 +32,13 @@ namespace Spotifree.Mapper
             return dao.FetchOne(id);
         }
 
+        public IList<List> GetByUser(User user)
+        {
+            DAO_List dao = new DAO_List();
+
+            return dao.GetByUserId(user.Id);
+        }
+
         public bool Register()
         {
             bool status = true;

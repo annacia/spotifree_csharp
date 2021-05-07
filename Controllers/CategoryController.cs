@@ -12,10 +12,13 @@ namespace Spotifree.Controllers
     public class CategoryController : ApiController
     {
         // GET: api/User
-        //public IEnumerable<string> GetAll()
-        //{
+        public IHttpActionResult Get()
+        {
+            Mapper_Category mapper = new Mapper_Category();
+            IList<Category> retorno = mapper.GetAll();
 
-        //}
+            return ResponseMessage(Request.CreateResponse<Object>(HttpStatusCode.OK, retorno));
+        }
 
         // GET: api/User/5
         [Authorize]

@@ -1,4 +1,6 @@
-﻿using Spotifree.Models;
+﻿using NHibernate.Criterion;
+using Spotifree.Models;
+using System.Collections.Generic;
 
 namespace Spotifree.DAO
 {
@@ -18,10 +20,24 @@ namespace Spotifree.DAO
         {
             return Session.QueryOver<Music>()
                     .JoinAlias(x => x.User, () => user)
-                    .JoinAlias(x => x.Category, () => category)
                     .Where(x => x.Id == id)
                     .SingleOrDefault();
+        }
 
+        public IList<Music> FetchByName(string name)
+        {
+            return Session.QueryOver<Music>()
+                    .JoinAlias(x => x.User, () => user)
+                    .WhereRestrictionOn(x => x.Name).IsLike(name, MatchMode.Anywhere)
+                    .List();
+        }
+
+        public IList<Music> GetByUserId(int id)
+        {
+            return Session.QueryOver<Music>()
+                    .JoinAlias(x => x.User, () => user)
+                    .Where(x => x.User.Id == id)
+                    .List();
         }
     }
 }

@@ -11,8 +11,8 @@
     <property name="Dir_art" />
     <property name="Created" />
     <property name="Modified" />
-    <many-to-one name="Category" column="fk_category"/>
-    <many-to-one name="User" column="fk_user"/>
+    <many-to-one name="Category" column="fk_category" fetch="join"/>
+    <many-to-one name="User" column="fk_user" />
     <bag name="Lists" table="MusicList" cascade="save-update">
       <key column="fk_music" />
       <many-to-many class="List" column="fk_list" not-found="ignore" />

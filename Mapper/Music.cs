@@ -64,6 +64,13 @@ namespace Spotifree.Mapper
             return dao.FetchOneById(id);
         }
 
+        public IList<Music> getByName(string name)
+        {
+            DAO_Music dao = new DAO_Music();
+
+            return dao.FetchByName(name);
+        }
+
         public bool Register()
         {
             bool status = true;
@@ -120,5 +127,12 @@ namespace Spotifree.Mapper
                 throw new Exception("nome da musica deve ser informado");
             }
         }
+        public IList<Music> GetByUser(User user)
+        {
+            DAO_Music dao = new DAO_Music();
+
+            return dao.GetByUserId(user.Id);
+        }
+
     }
 }
